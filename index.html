@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مروان محمد عبده — Portfolio (Dark)</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0d10;                 /* very dark background */
+      --panel:#0f1720;              /* card background */
+      --muted:#9aa3b2;              /* muted text */
+      --text:#e6eef8;               /* main text */
+      --neon:#8b5cf6;               /* purple neon */
+      --neon-2:#a78bfa;             /* lighter neon */
+      --glass: rgba(255,255,255,0.03);
+      --max-w:1080px;
+      --radius:14px;
+      --shadow: 0 10px 30px rgba(3,7,18,0.6);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg), #050607);color:var(--text);font-family:"Tajawal","Inter",system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* layout */
+    .site{max-width:var(--max-w);margin:18px auto;padding:18px 18px 120px} /* bottom padding for nav */
+    header.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    .lang-toggle{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:999px;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px}
+    .lang-toggle:hover{box-shadow:0 6px 20px rgba(139,92,246,0.08);}
+
+    /* HERO / ABOUT */
+    .hero{display:flex;gap:18px;align-items:center;padding:20px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(139,92,246,0.04), rgba(10,13,18,0.02));box-shadow:var(--shadow)}
+    .hero .avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03)}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+
+    .hero .content h1{margin:0;font-size:22px;line-height:1.05}
+    .hero .content p.lead{margin:8px 0 0 0;color:var(--muted);max-width:780px;line-height:1.6}
+    .hero .actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{background:linear-gradient(180deg,var(--neon), var(--neon-2));color:#fff;padding:9px 12px;border-radius:10px;border:none;font-weight:600;cursor:pointer;box-shadow:0 10px 30px rgba(139,92,246,0.12)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--neon);box-shadow:none}
+
+    /* sections */
+    section{margin-top:26px;opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
+    section.visible{opacity:1;transform:translateY(0)}
+    h2.section-title{font-size:16px;margin:0 0 12px 0;color:var(--text);display:flex;align-items:center;gap:10px}
+    .muted{color:var(--muted)}
+
+    /* Experience timeline */
+    .timeline{position:relative;padding-left:14px;border-left:2px solid rgba(255,255,255,0.03)}
+    .timeline .item{position:relative;padding:14px 0 14px 18px}
+    .timeline .item:before{content:'';position:absolute;left:-12px;top:18px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,var(--neon),var(--neon-2));box-shadow:0 8px 26px rgba(139,92,246,0.18)}
+    .timeline .job{font-weight:700}
+    .timeline .desc{margin-top:6px;color:var(--muted);font-size:14px}
+
+    /* Projects grid */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .proj{border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 24px rgba(3,7,18,0.6);cursor:pointer;transition:transform .32s, box-shadow .32s}
+    .proj:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(139,92,246,0.12)}
+    .proj .thumb{height:150px;background-size:cover;background-position:center}
+    .proj .meta{padding:12px}
+    .proj .meta .title{font-weight:700}
+    .proj .meta .sub{margin-top:6px;color:var(--muted);font-size:13px}
+
+    /* contact grid */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:14px}
+    .card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+
+    /* Bottom glass nav */
+    .bottom-wrapper{position:fixed;left:0;right:0;bottom:16px;display:flex;justify-content:center;z-index:240;pointer-events:auto}
+    .bottom{width:min(560px,96%);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px);border-radius:999px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 18px 46px rgba(3,7,18,0.6)}
+    .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 8px;border-radius:999px;position:relative;cursor:pointer;color:var(--muted)}
+    .nav-btn .icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .28s}
+    .nav-btn .label{font-size:12px}
+    .nav-btn.active{color:#081225}
+    .nav-btn.active .icon{transform:translateY(-8px)}
+
+    /* bubble */
+    .bubble{position:absolute;top:-20px;width:56px;height:56px;border-radius:50%;left:0;background:linear-gradient(180deg,var(--neon-2),var(--neon));box-shadow:0 14px 40px rgba(139,92,246,0.22);transform:translateX(0) scale(.88);transition:all .34s cubic-bezier(.2,.9,.3,1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;pointer-events:none}
+    .bubble.small{width:48px;height:48px;top:-18px}
+
+    /* responsive */
+    @media (max-width:980px){ .projects-grid{grid-template-columns:repeat(2,1fr)} .contact-grid{grid-template-columns:1fr} }
+    @media (max-width:560px){
+      .projects-grid{grid-template-columns:1fr}
+      .hero{flex-direction:column;align-items:flex-start}
+      .bottom{padding:8px}
+      .bubble{display:block}
+      .nav-btn .label{display:none}
+    }
+
+    /* utility reveal */
+    .fade-up{opacity:0;transform:translateY(8px);transition:all .5s ease}
+    .fade-up.show{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+
+  <div class="site">
+
+    <!-- top bar: language toggle and small brand -->
+    <header class="topbar" role="banner">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="display:flex;flex-direction:column">
+          <strong style="font-size:15px">Marwan Abdo</strong>
+          <small style="color:var(--muted)">Digital Marketing</small>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px">
+        <button id="langBtn" class="lang-toggle" aria-pressed="false" title="Toggle language">🇪🇬 العربية</button>
+      </div>
+    </header>
+
+    <!-- HERO / ABOUT -->
+    <section id="home" class="hero" aria-label="About">
+      <div class="avatar" aria-hidden="true">
+        <!-- put your logo image as logo_marwan.png in the same folder to show -->
+        <img src="/1758389862705.jpg" alt="لوغو مروان" onerror="this.style.display='none'">
+      </div>
+
+      <div class="content">
+        <h1 data-i18n="hi_ar">👋 أنا مروان محمد عبده</h1>
+        <p class="lead" data-i18n="about_ar">
+          
+           متخصص تسويق رقمي بخبرة في السوشيال ميديا والإعلانات الممولة وتحسين محركات البحث (SEO).
+          اشتغلت مع علامات تجارية في السعودية وأمريكا والأردن، وبقدم حلول تسويقية مبتكرة تساعد على نمو الأعمال وتحسين المبيعات.
+          وعندي خبرة في التصميم باستخدام <strong>Photoshop</strong> و<strong>Illustrator</strong> و<strong>Canva</strong>.
+        </p>
+
+        <div class="actions">
+          <a class="btn" id="behanceBtn" href="https://www.behance.net/marwanmabdoabdo" target="_blank" rel="noopener noreferrer" data-i18n-title="behance">شاهد أعمالي</a>
+          <a class="btn ghost" href="mailto:marwanmabdoabdo@gmail.com" data-i18n-title="email">راسلني</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="expTitle">
+      <h2 id="expTitle" class="section-title" data-i18n="exp_title">الخبرات</h2>
+
+      <div class="timeline">
+        <div class="item fade-up">
+          <div class="job" data-i18n="job1_title">Nile Guide — Digital Marketing (2025)</div>
+          <div class="desc" data-i18n="job1_desc">إدارة حملات مدفوعة، تحسين الأداء وقياس النتائج.</div>
+        </div>
+                <div class="item fade-up">
+          <div class="job" data-i18n="job2_title">Makhlouf Group Digital Marketing</div>
+          <div class="desc" data-i18n="job2_desc">تنفيذ استراتيجيات سوشيال ومحتوى إعلاني.</div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job" data-i18n="job2_title"> الحاذق للمقاولات — Digital Marketing</div>
+          <div class="desc" data-i18n="job2_desc">تنفيذ خطط تسويقية لتحديداهداف معينه وجلب العملاء.</div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job" data-i18n="job2_title">Dar El Malik — Digital Marketing</div>
+          <div class="desc" data-i18n="job2_desc">تنفيذ استراتيجيات سوشيال ومحتوى إعلاني.</div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job" data-i18n="job3_title"> Tasees — Founder & Marketing</div>
+          <div class="desc" data-i18n="job3_desc">،العمل علي الحملات الدعائيه في السوق السعودي وجلب الطلاب </div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job" data-i18n="job4_title">  NoorArt — Designer & Marketer</div>
+          <div class="desc" data-i18n="job4_desc">تصميم مواد تسويقية وهويات بصرية.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="works" aria-labelledby="worksTitle">
+      <h2 id="worksTitle" class="section-title" data-i18n="works_title">أعمالي</h2>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- placeholders; replace background-image with your project screenshots -->
+        <div class="proj fade-up" tabindex="0" role="link" aria-label="Project 1" onclick="window.open('https://www.behance.net/marwanmabdoabdo', '_blank')">
+          <div class="thumb" style="background-image:linear-gradient(180deg, rgba(139,92,246,0.28), rgba(10,12,18,0.1)), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22360%22><rect width=%22720%22 height=%22360%22 fill=%22%230b0d10%22/><text x=%22360%22 y=%22190%22 font-size=%2230%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Tajawal, Arial%22>Project+1</text></svg>');"></div>
+          <div class="meta">
+            <div class="title" data-i18n="proj1_title">Google Ads — Prayer Rugs</div>
+            <div class="sub" data-i18n="proj1_sub">ROAS ×3.2 • CPA -42%</div>
+          </div>
+        </div>
+
+        <div class="proj fade-up" tabindex="0" role="link" aria-label="Project 2" onclick="window.open('https://www.behance.net/marwanmabdoabdo', '_blank')">
+          <div class="thumb" style="background-image:linear-gradient(180deg, rgba(139,92,246,0.24), rgba(10,12,18,0.08)), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22360%22><rect width=%22720%22 height=%22360%22 fill=%22%230b0d10%22/><text x=%22360%22 y=%22190%22 font-size=%2230%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Tajawal, Arial%22>Project+2</text></svg>');"></div>
+          <div class="meta">
+            <div class="title" data-i18n="proj2_title">SEO — Fashion E-commerce</div>
+            <div class="sub" data-i18n="proj2_sub">تحسين تقني ومحتوى • Organic +85%</div>
+          </div>
+        </div>
+
+        <div class="proj fade-up" tabindex="0" role="link" aria-label="Project 3" onclick="window.open('https://www.behance.net/marwanmabdoabdo', '_blank')">
+          <div class="thumb" style="background-image:linear-gradient(180deg, rgba(139,92,246,0.22), rgba(10,12,18,0.06)), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22360%22><rect width=%22720%22 height=%22360%22 fill=%22%230b0d10%22/><text x=%22360%22 y=%22190%22 font-size=%2230%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Tajawal, Arial%22>Project+3</text></svg>');"></div>
+          <div class="meta">
+            <div class="title" data-i18n="proj3_title">Social Growth — Kids Toys</div>
+            <div class="sub" data-i18n="proj3_sub">حوائط UGC • Engagement +60%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contactTitle">
+      <h2 id="contactTitle" class="section-title" data-i18n="contact_title">تواصل</h2>
+
+      <div class="contact-grid">
+        <div>
+          <div class="card">
+            <strong data-i18n="contact_heading">راسلني</strong>
+            <div style="margin-top:10px;color:var(--muted)">
+              <div data-i18n="email_label">Email:</div>
+              <a href="mailto:marwanmabdoabdo@gmail.com">marwanmabdoabdo@gmail.com</a>
+            </div>
+            <div style="margin-top:8px;color:var(--muted)">
+              <div data-i18n="phone_label">Phone:</div>
+              <a href="tel:+201027421229">01027421229</a>
+            </div>
+            <div style="margin-top:10px;color:var(--muted)">
+              <div data-i18n="behance_label">Behance:</div>
+              <a href="https://www.behance.net/marwanmabdoabdo" target="_blank" rel="noopener noreferrer">behance.net/marwanmabdoabdo</a>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <strong data-i18n="avail_title">التوافر</strong>
+            <div style="margin-top:10px;color:var(--muted)" data-i18n="avail_desc">متاح للعمل الحر وفرص بدوام كامل. يفضّل العمل عن بُعد للأسواق الأمريكية.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer style="margin-top:26px;color:var(--muted);font-size:13px">
+      © <span id="year"></span> Marwan Abdo — <a href="mailto:marwanmabdoabdo@gmail.com">marwanmabdoabdo@gmail.com</a>
+    </footer>
+  </div>
+
+  <!-- Bottom Nav (glass style) -->
+  <div class="bottom-wrapper" aria-hidden="false">
+    <nav class="bottom" role="navigation" aria-label="Bottom navigation">
+      <div id="bubble" class="bubble" aria-hidden="true" style="opacity:0"></div>
+
+      <div class="nav-btn" data-target="#home" data-index="0" role="button" tabindex="0" aria-label="home">
+        <div class="icon" aria-hidden="true">
+          <!-- home -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 4l9 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 21V11h14v10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="label">الرئيسية</div>
+      </div>
+
+      <div class="nav-btn" data-target="#experience" data-index="1" role="button" tabindex="0" aria-label="experience">
+        <div class="icon" aria-hidden="true">
+          <!-- chart -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 20V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 20V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 20v-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="label">الخبرات</div>
+      </div>
+
+      <div class="nav-btn" data-target="#works" data-index="2" role="button" tabindex="0" aria-label="works">
+        <div class="icon" aria-hidden="true">
+          <!-- grid / work -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/><rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/><rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/><rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/></svg>
+        </div>
+        <div class="label">أعمالي</div>
+      </div>
+
+      <div class="nav-btn" data-target="#contact" data-index="3" role="button" tabindex="0" aria-label="contact">
+        <div class="icon" aria-hidden="true">
+          <!-- person -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="label">تواصل</div>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    // basic init
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // IntersectionObserver reveal
+    const revealEls = document.querySelectorAll('section, .hero');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, {threshold:0.14});
+    revealEls.forEach(el => io.observe(el));
+
+    // bottom nav behavior
+    const navBtns = Array.from(document.querySelectorAll('.nav-btn'));
+    const bubble = document.getElementById('bubble');
+
+    function placeBubble(index){
+      const active = navBtns[index];
+      if(!active) return;
+      const parentRect = active.parentElement.getBoundingClientRect();
+      const itemRect = active.getBoundingClientRect();
+      const offsetX = itemRect.left - parentRect.left + (itemRect.width - bubble.offsetWidth)/2;
+      bubble.style.opacity = 1;
+      bubble.style.transform = `translateX(${offsetX}px)`;
+      // clone icon inside bubble
+      bubble.innerHTML = active.querySelector('.icon').innerHTML;
+      // show active style
+      navBtns.forEach((n,i)=> n.classList.toggle('active', i === index));
+    }
+
+    // init bubble after load
+    window.addEventListener('load', ()=> {
+      setTimeout(()=> placeBubble(0), 120);
+    });
+    window.addEventListener('resize', ()=> {
+      const idx = navBtns.findIndex(n => n.classList.contains('active'));
+      placeBubble(idx >= 0 ? idx : 0);
+    });
+
+    navBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', ()=> {
+        const target = document.querySelector(btn.dataset.target);
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        placeBubble(idx);
+      });
+      btn.addEventListener('keydown', (e)=> { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); btn.click(); }});
+    });
+
+    // update active on scroll
+    const sections = ['#home','#experience','#works','#contact'].map(s=> document.querySelector(s));
+    function syncOnScroll(){
+      const fromTop = window.scrollY + innerHeight/3;
+      let idx = 0;
+      sections.forEach((sec,i)=> { if(sec && sec.offsetTop <= fromTop) idx = i; });
+      placeBubble(idx);
+    }
+    window.addEventListener('scroll', syncOnScroll, {passive:true});
+
+    // staggered reveal for fade-up elements
+    const fadeUps = document.querySelectorAll('.fade-up');
+    fadeUps.forEach((el,i) => setTimeout(()=> el.classList.add('show'), 260 + i*120));
+
+    // Language toggle (Arabic default)
+    const translations = {
+      en: {
+        'hi_ar': 'Hi — I’m Marwan Abdo',
+        'about_ar': "I’m a digital marketing specialist focusing on social media, paid ads and SEO. I worked with brands in KSA, USA and Jordan — I deliver data-driven creative campaigns. I also design using Photoshop, Illustrator and Canva.",
+        'behance': 'View my work on Behance',
+        'exp_title': 'Experience',
+        'job1_title': 'Nile Guide — Digital Marketing (2025)',
+        'job1_desc': 'Managed paid campaigns, performance & tracking.',
+        'job2_title': 'Dar El Malik — Digital Marketing',
+        'job2_desc': 'Social & ad content execution.',
+        'job3_title': 'Asas / Tasees — Founder & Marketing',
+        'job3_desc': 'Project founding, e-commerce, CX optimization.',
+        'job4_title': 'North Art / Nour Art — Designer & Marketer',
+        'job4_desc': 'Design of marketing materials & brand identity.',
+        'works_title': 'Selected Work',
+        'proj1_title': 'Google Ads — Prayer Rugs',
+        'proj1_sub': 'ROAS ×3.2 • CPA -42%',
+        'proj2_title': 'SEO — Fashion E-commerce',
+        'proj2_sub': 'Tech SEO & content • Organic +85%',
+        'proj3_title': 'Social Growth — Kids Toys',
+        'proj3_sub': 'UGC & targeted campaigns • +60% engagement',
+        'contact_title': 'Contact',
+        'contact_heading': 'Get in touch',
+        'email_label': 'Email:',
+        'phone_label': 'Phone:',
+        'behance_label': 'Behance:',
+        'avail_title': 'Availability',
+        'avail_desc': 'Open to freelance & full-time. Prefer remote for US markets.'
+      }
+    };
+
+    let currentLang = 'ar';
+    const langBtn = document.getElementById('langBtn');
+    langBtn.addEventListener('click', () => {
+      if(currentLang === 'ar') setLang('en'); else setLang('ar');
+    });
+
+    function setLang(lang){
+      currentLang = lang;
+      if(lang === 'ar'){
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+        langBtn.innerHTML = '🇪🇬 العربية';
+        langBtn.setAttribute('aria-pressed', 'false');
+        // revert to Arabic text stored in data attributes
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          // do nothing (Arabic text already in DOM)
+        });
+        // some title/btn labels have separate data attributes
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+          // set back to Arabic inner text if necessary
+          if(el.id === 'behanceBtn') el.textContent = 'شاهد أعمالي';
+        });
+      } else {
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+        langBtn.innerHTML = '🇬🇧 English';
+        langBtn.setAttribute('aria-pressed', 'true');
+        // set translations
+        Object.keys(translations.en).forEach(key => {
+          const nodes = document.querySelectorAll(`[data-i18n='${key}']`);
+          nodes.forEach(n => n.textContent = translations.en[key]);
+        });
+        // some elements used data-i18n-title
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+          const k = el.getAttribute('data-i18n-title');
+          if(k && translations.en[k]) el.textContent = translations.en[k];
+        });
+      }
+    }
+
+    // set english translations to elements by key mapping
+    // but our Arabic content uses different data keys -> map them manually
+    function mapTranslations(){
+      // mapping Arabic data keys to english translation keys
+      const mapping = {
+        'hi_ar':'hi_ar',
+        'about_ar':'about_ar',
+        'exp_title':'exp_title',
+        'job1_title':'job1_title',
+        'job1_desc':'job1_desc',
+        'job2_title':'job2_title',
+        'job2_desc':'job2_desc',
+        'job3_title':'job3_title',
+        'job3_desc':'job3_desc',
+        'job4_title':'job4_title',
+        'job4_desc':'job4_desc',
+        'works_title':'works_title',
+        'proj1_title':'proj1_title',
+        'proj1_sub':'proj1_sub',
+        'proj2_title':'proj2_title',
+        'proj2_sub':'proj2_sub',
+        'proj3_title':'proj3_title',
+        'proj3_sub':'proj3_sub',
+        'contact_title':'contact_title',
+        'contact_heading':'contact_heading',
+        'email_label':'email_label',
+        'phone_label':'phone_label',
+        'behance_label':'behance_label',
+        'avail_title':'avail_title',
+        'avail_desc':'avail_desc'
+      };
+      // apply for english when toggled
+      // we use elements that have data-i18n attribute set to keys above
+    }
+    // no need to call mapTranslations explicitly; setLang handles it
+
+    // Accessibility: keyboard nav for bottom nav
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
+        const idx = navBtns.findIndex(n => n.classList.contains('active'));
+        let next = idx;
+        if(e.key === 'ArrowLeft') next = Math.max(0, idx - 1);
+        if(e.key === 'ArrowRight') next = Math.min(navBtns.length - 1, idx + 1);
+        navBtns[next].focus();
+        navBtns[next].click();
+      }
+    });
+
+    // small timeout to add .show for some elements
+    setTimeout(()=> {
+      document.querySelectorAll('.fade-up').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), 180 + i*100));
+    }, 300);
+  </script>
+</body>
+</html>
