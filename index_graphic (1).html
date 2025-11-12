@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مروان محمد عبده — Graphic Designer</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0d10;
+      --panel:#0f1720;
+      --muted:#9aa3b2;
+      --text:#e6eef8;
+      --neon:#8b5cf6;
+      --neon-2:#a78bfa;
+      --glass: rgba(255,255,255,0.03);
+      --max-w:1080px;
+      --radius:14px;
+      --shadow: 0 10px 30px rgba(3,7,18,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg), #050607);color:var(--text);font-family:"Tajawal","Inter",system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .site{max-width:var(--max-w);margin:18px auto;padding:18px 18px 120px}
+    header.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    .lang-toggle{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:999px;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px}
+    .hero{display:flex;gap:18px;align-items:center;padding:20px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(139,92,246,0.04), rgba(10,13,18,0.02));box-shadow:var(--shadow)}
+    .hero .avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03)}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .hero .content h1{margin:0;font-size:22px;line-height:1.05}
+    .hero .content p.lead{margin:8px 0 0 0;color:var(--muted);max-width:780px;line-height:1.6}
+    .actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{background:linear-gradient(180deg,var(--neon), var(--neon-2));color:#fff;padding:9px 12px;border-radius:10px;border:none;font-weight:600;cursor:pointer;box-shadow:0 10px 30px rgba(139,92,246,0.12)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--neon);box-shadow:none}
+    section{margin-top:26px;opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
+    section.visible{opacity:1;transform:translateY(0)}
+    h2.section-title{font-size:16px;margin:0 0 12px 0;color:var(--text);display:flex;align-items:center;gap:10px}
+    .muted{color:var(--muted)}
+    .timeline{position:relative;padding-left:14px;border-left:2px solid rgba(255,255,255,0.03)}
+    .timeline .item{position:relative;padding:14px 0 14px 18px}
+    .timeline .item:before{content:'';position:absolute;left:-12px;top:18px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,var(--neon),var(--neon-2));box-shadow:0 8px 26px rgba(139,92,246,0.18)}
+    .timeline .job{font-weight:700}
+    .timeline .desc{margin-top:6px;color:var(--muted);font-size:14px}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .proj{border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 24px rgba(3,7,18,0.6);cursor:pointer;transition:transform .32s, box-shadow .32s}
+    .proj:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(139,92,246,0.12)}
+    .proj .thumb{height:150px;background-size:cover;background-position:center}
+    .proj .meta{padding:12px}
+    .proj .meta .title{font-weight:700}
+    .proj .meta .sub{margin-top:6px;color:var(--muted);font-size:13px}
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:14px}
+    .card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .bottom-wrapper{position:fixed;left:0;right:0;bottom:16px;display:flex;justify-content:center;z-index:240;pointer-events:auto}
+    .bottom{width:min(560px,96%);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px);border-radius:999px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 18px 46px rgba(3,7,18,0.6)}
+    .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 8px;border-radius:999px;position:relative;cursor:pointer;color:var(--muted)}
+    .nav-btn .icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .28s}
+    .nav-btn .label{font-size:12px}
+    .nav-btn.active{color:#081225}
+    .nav-btn.active .icon{transform:translateY(-8px)}
+    .bubble{position:absolute;top:-20px;width:56px;height:56px;border-radius:50%;left:0;background:linear-gradient(180deg,var(--neon-2),var(--neon));box-shadow:0 14px 40px rgba(139,92,246,0.22);transform:translateX(0) scale(.88);transition:all .34s cubic-bezier(.2,.9,.3,1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;pointer-events:none}
+    .bubble.small{width:48px;height:48px;top:-18px}
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
+    .skill-row{display:flex;flex-direction:column;gap:6px}
+    .skill-label{display:flex;justify-content:space-between;align-items:center;font-weight:600}
+    .skill-bar{background:rgba(139,92,246,0.12);height:12px;border-radius:8px;overflow:hidden;position:relative}
+    .skill-bar > .fill{height:100%;width:0;background:linear-gradient(90deg,var(--neon),var(--neon-2));transition:width 1.4s cubic-bezier(.2,.9,.3,1)}
+    .service-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .service{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));}
+    @media (max-width:980px){ .projects-grid{grid-template-columns:repeat(2,1fr)} .contact-grid{grid-template-columns:1fr} .skills-grid{grid-template-columns:1fr} .service-list{grid-template-columns:1fr} }
+    @media (max-width:560px){
+      .projects-grid{grid-template-columns:1fr}
+      .hero{flex-direction:column;align-items:flex-start}
+      .bottom{padding:8px}
+      .bubble{display:block}
+      .nav-btn .label{display:none}
+    }
+    .fade-up{opacity:0;transform:translateY(8px);transition:all .5s ease}
+    .fade-up.show{opacity:1;transform:translateY(0)}
+    .mono{font-family:Inter, monospace;font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+
+  <div class="site">
+
+    <header class="topbar" role="banner">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="display:flex;flex-direction:column">
+          <strong style="font-size:15px">مروان محمد عبده</strong>
+          <small id="jobTitle" style="color:var(--muted)">Graphic Designer — مصمم جرافيك</small>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px">
+        <button id="langBtn" class="lang-toggle" aria-pressed="false" title="Toggle language">🇪🇬 العربية</button>
+      </div>
+    </header>
+
+    <!-- HERO / ABOUT -->
+    <section id="home" class="hero" aria-label="About">
+      <div class="avatar" aria-hidden="true">
+        <!-- ضع ملف اللوغو بنفس اسم logo_marwan.png فى نفس الفولدر لو عايز يظهر -->
+        <img src="/1758389862705.jpg" alt="لوغو مروان" onerror="this.style.display='none'">
+      </div>
+
+      <div class="content">
+        <h1 data-i18n="hi_ar">👋 أنا مروان محمد عبده</h1>
+        <p class="lead" id="aboutText" data-i18n="about_ar">
+          مصمم جرافيك محترف متخصص في تصميم الشعارات والهويات البصرية والتغليف وتصميمات السوشيال ميديا والمواد الطباعية. أسعى لتحويل الرؤية التجارية إلى هوية بصرية متماسكة وجذابة تسهل تواصل العلامة مع جمهورها.
+        </p>
+
+        <div class="actions">
+          <a class="btn" id="behanceBtn" href="https://www.behance.net/marwanmabdoabdo" target="_blank" rel="noopener noreferrer" data-i18n-title="behance">شاهد أعمالي</a>
+          <a class="btn ghost" href="mailto:marwanmabdoabdo@gmail.com" data-i18n-title="email">راسلني</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" aria-labelledby="servicesTitle">
+      <h2 id="servicesTitle" class="section-title" data-i18n="services_title">الخدمات</h2>
+      <div class="service-list fade-up">
+        <div class="service">
+          <strong>Logo Design — تصميم شعارات</strong>
+          <div class="mono">هوية متكاملة • رموز قابلة للطباعة والويب • دليل استخدام شعار</div>
+        </div>
+        <div class="service">
+          <strong>Branding — هويات بصرية</strong>
+          <div class="mono">لوحات ألوان، تايبوجرافى، مواد تسويقية متناسقة</div>
+        </div>
+        <div class="service">
+          <strong>Social Media Design — تصميم السوشيال</strong>
+          <div class="mono">قوالب مميزة للمنشورات، ستورى، إعلانات بصريّة</div>
+        </div>
+        <div class="service">
+          <strong>Print & Packaging — طباعه وتغليف</strong>
+          <div class="mono">ملفات جاهزة للطباعة • Mockups • إعداد للـ CMYK</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="expTitle">
+      <h2 id="expTitle" class="section-title" data-i18n="exp_title">الخبرات</h2>
+
+      <div class="timeline">
+        <div class="item fade-up">
+          <div class="job">Areej — Graphic Designer</div>
+          <div class="desc">تصميم هوية مرئية كاملة، شعارات، مواد إنفوغرافيك، وإعداد ملفات للطباعة. قيادة مشروعات تصميمية للمنتجات والحملات الرقمية.</div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job">Nile Guide — Graphic Designer</div>
+          <div class="desc">تصميم مواد ترويجية وبوستات احترافية للسفر والسياحة، قوالب منشورات، وإعلانات بصيغة جاهزة للمنصات المختلفة.</div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job">Dar El Malik — Graphic Designer</div>
+          <div class="desc">إعداد هوية علامات تجارية، تصميم مطبوعات دعائية وكتيبات، ومتابعة مراحل الطباعة والجودة.</div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job">Tasees — Graphic Designer</div>
+          <div class="desc">تصميم مواد تعليمية وبصرية للمشروعات والدورات، إعداد سلايدز، وبناء قوالب موحدة للمواد التدريبية.</div>
+        </div>
+
+        <div class="item fade-up">
+          <div class="job">Noor Art — Graphic Designer</div>
+          <div class="desc">تصميم ملصقات وحملات بصريّة، تجهيز ملفات طباعية عالية الجودة وتصميم مواد العرض.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skillsTitle">
+      <h2 id="skillsTitle" class="section-title" data-i18n="skills_title">المهارات</h2>
+
+      <div class="skills-grid">
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>Photoshop</span><span id="p_ph">95%</span></div>
+          <div class="skill-bar" data-percent="95"><div class="fill"></div></div>
+        </div>
+
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>Illustrator</span><span id="p_il">90%</span></div>
+          <div class="skill-bar" data-percent="90"><div class="fill"></div></div>
+        </div>
+
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>InDesign</span><span id="p_id">85%</span></div>
+          <div class="skill-bar" data-percent="85"><div class="fill"></div></div>
+        </div>
+
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>Canva</span><span id="p_ca">88%</span></div>
+          <div class="skill-bar" data-percent="88"><div class="fill"></div></div>
+        </div>
+
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>Branding</span><span id="p_br">92%</span></div>
+          <div class="skill-bar" data-percent="92"><div class="fill"></div></div>
+        </div>
+
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>Typography</span><span id="p_ty">89%</span></div>
+          <div class="skill-bar" data-percent="89"><div class="fill"></div></div>
+        </div>
+
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>Mockups & Presentation</span><span id="p_mo">86%</span></div>
+          <div class="skill-bar" data-percent="86"><div class="fill"></div></div>
+        </div>
+
+        <div class="skill-row fade-up">
+          <div class="skill-label"><span>Print Design</span><span id="p_pr">87%</span></div>
+          <div class="skill-bar" data-percent="87"><div class="fill"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="works" aria-labelledby="worksTitle">
+      <h2 id="worksTitle" class="section-title" data-i18n="works_title">نماذج أعمال</h2>
+
+      <div class="projects-grid" id="projectsGrid">
+        <div class="proj fade-up" tabindex="0" role="link" aria-label="Logo Project" onclick="window.open('https://www.behance.net/marwanmabdoabdo', '_blank')">
+          <div class="thumb" style="background-image:linear-gradient(180deg, rgba(139,92,246,0.28), rgba(10,12,18,0.1)), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22360%22><rect width=%22720%22 height=%22360%22 fill=%22%230b0d10%22/><text x=%22360%22 y=%22190%22 font-size=%2230%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Tajawal, Arial%22>Logo+Design</text></svg>');"></div>
+          <div class="meta">
+            <div class="title">Logo & Identity</div>
+            <div class="sub">هوية كاملة • دليل استخدام الشعار</div>
+          </div>
+        </div>
+
+        <div class="proj fade-up" tabindex="0" role="link" aria-label="Branding Project" onclick="window.open('https://www.behance.net/marwanmabdoabdo', '_blank')">
+          <div class="thumb" style="background-image:linear-gradient(180deg, rgba(139,92,246,0.24), rgba(10,12,18,0.08)), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22360%22><rect width=%22720%22 height=%22360%22 fill=%22%230b0d10%22/><text x=%22360%22 y=%22190%22 font-size=%2230%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Tajawal, Arial%22>Branding</text></svg>');"></div>
+          <div class="meta">
+            <div class="title">Branding Package</div>
+            <div class="sub">لوحة ألوان • تايبوجرافى • قوالب سوشيال</div>
+          </div>
+        </div>
+
+        <div class="proj fade-up" tabindex="0" role="link" aria-label="Packaging Project" onclick="window.open('https://www.behance.net/marwanmabdoabdo', '_blank')">
+          <div class="thumb" style="background-image:linear-gradient(180deg, rgba(139,92,246,0.22), rgba(10,12,18,0.06)), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22360%22><rect width=%22720%22 height=%22360%22 fill=%22%230b0d10%22/><text x=%22360%22 y=%22190%22 font-size=%2230%22 fill=%22%23a78bfa%22 text-anchor=%22middle%22 font-family=%22Tajawal, Arial%22>Packaging</text></svg>');"></div>
+          <div class="meta">
+            <div class="title">Packaging & Mockups</div>
+            <div class="sub">نماذج تغليف جاهزة للطباعة والعرض</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contactTitle">
+      <h2 id="contactTitle" class="section-title" data-i18n="contact_title">تواصل</h2>
+
+      <div class="contact-grid">
+        <div>
+          <div class="card">
+            <strong data-i18n="contact_heading">راسلني</strong>
+            <div style="margin-top:10px;color:var(--muted)">
+              <div data-i18n="email_label">Email:</div>
+              <a href="mailto:marwanmabdoabdo@gmail.com">marwanmabdoabdo@gmail.com</a>
+            </div>
+            <div style="margin-top:8px;color:var(--muted)">
+              <div data-i18n="phone_label">Phone:</div>
+              <a href="tel:+201027421229">01027421229</a>
+            </div>
+            <div style="margin-top:10px;color:var(--muted)">
+              <div data-i18n="behance_label">Behance:</div>
+              <a href="https://www.behance.net/marwanmabdoabdo" target="_blank" rel="noopener noreferrer">behance.net/marwanmabdoabdo</a>
+            </div>
+            <div style="margin-top:10px;color:var(--muted)">
+              <strong>Delivery</strong>
+              <div class="mono">مشاريع جاهزة للطباعة + ملفات مصدرية (.psd .ai .indd) عند الطلب.</div>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <strong data-i18n="avail_title">التوافر</strong>
+            <div style="margin-top:10px;color:var(--muted)" data-i18n="avail_desc">متاح للعمل الحر وفرص بدوام كامل. أفضّل العمل الهجين/عن بُعد لمشروعات التصميم.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer style="margin-top:26px;color:var(--muted);font-size:13px">
+      © <span id="year"></span> Marwan Abdo — <a href="mailto:marwanmabdoabdo@gmail.com">marwanmabdoabdo@gmail.com</a>
+    </footer>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-wrapper" aria-hidden="false">
+    <nav class="bottom" role="navigation" aria-label="Bottom navigation">
+      <div id="bubble" class="bubble" aria-hidden="true" style="opacity:0"></div>
+
+      <div class="nav-btn" data-target="#home" data-index="0" role="button" tabindex="0" aria-label="home">
+        <div class="icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 4l9 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 21V11h14v10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="label">الرئيسية</div>
+      </div>
+
+      <div class="nav-btn" data-target="#experience" data-index="1" role="button" tabindex="0" aria-label="experience">
+        <div class="icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 20V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 20V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 20v-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="label">الخبرات</div>
+      </div>
+
+      <div class="nav-btn" data-target="#works" data-index="2" role="button" tabindex="0" aria-label="works">
+        <div class="icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/><rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/><rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/><rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="1.4" rx="1"/></svg>
+        </div>
+        <div class="label">أعمالي</div>
+      </div>
+
+      <div class="nav-btn" data-target="#contact" data-index="3" role="button" tabindex="0" aria-label="contact">
+        <div class="icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="label">تواصل</div>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    // init year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // intersection reveal
+    const revealEls = document.querySelectorAll('section, .hero');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, {threshold:0.14});
+    revealEls.forEach(el => io.observe(el));
+
+    // bottom nav bubble
+    const navBtns = Array.from(document.querySelectorAll('.nav-btn'));
+    const bubble = document.getElementById('bubble');
+
+    function placeBubble(index){
+      const active = navBtns[index];
+      if(!active) return;
+      const parentRect = active.parentElement.getBoundingClientRect();
+      const itemRect = active.getBoundingClientRect();
+      const offsetX = itemRect.left - parentRect.left + (itemRect.width - bubble.offsetWidth)/2;
+      bubble.style.opacity = 1;
+      bubble.style.transform = `translateX(${offsetX}px)`;
+      bubble.innerHTML = active.querySelector('.icon').innerHTML;
+      navBtns.forEach((n,i)=> n.classList.toggle('active', i === index));
+    }
+
+    window.addEventListener('load', ()=> {
+      setTimeout(()=> placeBubble(0), 120);
+    });
+    window.addEventListener('resize', ()=> {
+      const idx = navBtns.findIndex(n => n.classList.contains('active'));
+      placeBubble(idx >= 0 ? idx : 0);
+    });
+
+    navBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', ()=> {
+        const target = document.querySelector(btn.dataset.target);
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        placeBubble(idx);
+      });
+      btn.addEventListener('keydown', (e)=> { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); btn.click(); }});
+    });
+
+    // fade-up stagger
+    const fadeUps = document.querySelectorAll('.fade-up');
+    fadeUps.forEach((el,i) => setTimeout(()=> el.classList.add('show'), 260 + i*120));
+
+    // skill bars animation when visible
+    const skillBars = document.querySelectorAll('.skill-bar');
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const bar = entry.target;
+          const percent = bar.getAttribute('data-percent') || 0;
+          const fill = bar.querySelector('.fill');
+          fill.style.width = percent + '%';
+          // update numeric display if present
+          const label = bar.previousElementSibling && bar.previousElementSibling.querySelector('span:last-child');
+          if(label) label.textContent = percent + '%';
+          skillObserver.unobserve(bar);
+        }
+      });
+    }, {threshold:0.3});
+    skillBars.forEach(b => skillObserver.observe(b));
+
+    // language toggle translations (Arabic default)
+    const translations = {
+      en: {
+        'hi_ar': 'Hi — I’m Marwan Abdo',
+        'about_ar': "I’m a Graphic Designer specializing in logo & brand identity, packaging, social media visuals and print-ready files. I translate ideas into clear visual systems that elevate brands across digital and print.",
+        'services_title':'Services',
+        'exp_title':'Experience',
+        'skills_title':'Skills',
+        'works_title':'Selected Work',
+        'contact_title':'Contact',
+        'contact_heading':'Get in touch',
+        'email_label':'Email:',
+        'phone_label':'Phone:',
+        'behance_label':'Behance:',
+        'avail_title':'Availability',
+        'avail_desc':'Available for freelance and full-time. Hybrid/remote design projects preferred.',
+        'behance':'View my work on Behance',
+        'email':'Email me'
+      }
+    };
+
+    let currentLang = 'ar';
+    const langBtn = document.getElementById('langBtn');
+    langBtn.addEventListener('click', () => {
+      if(currentLang === 'ar') setLang('en'); else setLang('ar');
+    });
+
+    function setLang(lang){
+      currentLang = lang;
+      if(lang === 'ar'){
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+        langBtn.innerHTML = '🇪🇬 العربية';
+        langBtn.setAttribute('aria-pressed', 'false');
+        // revert to Arabic content (hardcoded originally)
+        document.querySelector('[data-i18n="hi_ar"]').textContent = "👋 أنا مروان محمد عبده";
+        document.getElementById('aboutText').textContent = "مصمم جرافيك محترف متخصص في تصميم الشعارات والهويات البصرية والتغليف وتصميمات السوشيال ميديا والمواد الطباعية. أسعى لتحويل الرؤية التجارية إلى هوية بصرية متماسكة وجذابة تسهل تواصل العلامة مع جمهورها.";
+        document.getElementById('jobTitle').textContent = 'Graphic Designer — مصمم جرافيك';
+        // short labels
+        document.getElementById('servicesTitle')?.remove?.();
+        // update buttons
+        document.getElementById('behanceBtn').textContent = 'شاهد أعمالي';
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+          if(el.getAttribute('data-i18n-title') === 'email') el.textContent = 'راسلني';
+        });
+      } else {
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+        langBtn.innerHTML = '🇬🇧 English';
+        langBtn.setAttribute('aria-pressed', 'true');
+        // set english text
+        document.querySelector('[data-i18n="hi_ar"]').textContent = translations.en.hi_ar;
+        document.getElementById('aboutText').textContent = translations.en.about_ar;
+        document.getElementById('jobTitle').textContent = 'Graphic Designer';
+        document.getElementById('behanceBtn').textContent = translations.en.behance;
+        document.querySelectorAll('[data-i18n]').forEach(el=>{
+          const key = el.getAttribute('data-i18n');
+          if(translations.en[key]) el.textContent = translations.en[key];
+        });
+      }
+    }
+
+    // accessibility keyboard nav
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
+        const idx = navBtns.findIndex(n => n.classList.contains('active'));
+        let next = idx;
+        if(e.key === 'ArrowLeft') next = Math.max(0, idx - 1);
+        if(e.key === 'ArrowRight') next = Math.min(navBtns.length - 1, idx + 1);
+        navBtns[next].focus();
+        navBtns[next].click();
+      }
+    });
+
+    // small stagger after load for fade-up elements
+    setTimeout(()=> {
+      document.querySelectorAll('.fade-up').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), 180 + i*80));
+    }, 300);
+  </script>
+</body>
+</html>
